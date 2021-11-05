@@ -1,5 +1,4 @@
 import React from "react";
-import ImgDsDark from 'assets/img/ds-dark.svg';
 const Footer = () => {
     return (
         <footer className="footer mt-auto py-3 bg-dark">
