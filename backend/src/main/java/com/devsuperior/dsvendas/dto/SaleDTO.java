@@ -1,47 +1,26 @@
-package com.devsuperior.dsvendas.entities;
+package com.devsuperior.dsvendas.dto;
 
 import java.time.LocalDate;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-@Table(name = "tb_sales")
-@Entity
-public class Sale {
+import com.devsuperior.dsvendas.entities.Sale;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SaleDTO {
+    
     private Long id;
     private Integer visited;
     private Integer deals;
     private Double amount;
     private LocalDate date;
+    private SellerDTO seller;
 
-    @ManyToOne
-    @JoinColumn(name = "seller_id")
-    private Seller seller;
-
-    public Sale(){
+    public SaleDTO(){
     }
 
-    public Sale(Long id, Integer visited, Integer deals, Double amount, LocalDate date, Seller seller) {
-        this.id = id;
-        this.visited = visited;
-        this.deals = deals;
-        this.amount = amount;
-        this.date = date;
-        this.seller = seller;
-    }
-
-    public Seller getSeller() {
+    public SellerDTO getSeller() {
         return seller;
     }
 
-    public void setSeller(Seller seller) {
+    public void setSeller(SellerDTO seller) {
         this.seller = seller;
     }
 
@@ -84,4 +63,23 @@ public class Sale {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public SaleDTO(Long id, Integer visited, Integer deals, Double amount, LocalDate date, SellerDTO seller) {
+        this.setId(id);
+        this.setVisited(visited);
+        this.setDeals(deals);
+        this.setAmount(amount);
+        this.setDate(date);
+        this.setSeller(seller);
+    }
+
+    public SaleDTO(Sale entity) {
+        setId(entity.getId());
+        setVisited(entity.getVisited());
+        setDeals(entity.getDeals());
+        setAmount(entity.getAmount());
+        setDate(entity.getDate());
+        setSeller(new SellerDTO(entity.getSeller()));
+    }
+
 }
