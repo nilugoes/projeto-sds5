@@ -1,5 +1,4 @@
 import axios from "axios";
-import { type } from "os";
 import React, { useEffect, useState } from "react";
 import Chart from 'react-apexcharts';
 import { SaleSuccess } from "types/sale";
@@ -51,7 +50,7 @@ const BarChart = () => {
                 });
                 console.log(chartData);
             });
-    }, []);
+    });
 
     const options = {
         plotOptions: {
